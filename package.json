@@ -1,5 +1,5 @@
 {
-  "name": "automatic-billing",
+  "name": "ai-bill",
   "version": "1.0.0",
   "description": "Automated Billing",
   "main": "server.js",
@@ -8,15 +8,17 @@
     "cors": "^2.8.5",
     "express": "^4.18.3",
     "mongodb": "^4.1.0",
-    "mongoose": "^5.13.5"
+    "mongoose": "^5.13.5",
+    "node": "^21.7.1"
   },
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "scripts": {
     "start": "node index.js"
-},
+  },
   "keywords": [],
   "author": "Shebin Jose Jacob",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {}
 }
