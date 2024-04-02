@@ -1,5 +1,5 @@
 var InitialCount = -1;
-
+// var len = 0
 
 
 const deleteProducts = async() => {
@@ -24,8 +24,8 @@ const deleteProducts = async() => {
 
 const loadprds= async(newData) => {
     $("#1").css("display", "none");
-    $("#home").css("display", "grid");
-    $("#2").css("display", "grid");
+    $("#home").css("display", "flex");
+    $("#2").css("display", "flex");
     var payable = 0;
     const products = newData;
     console.log(products);
@@ -39,31 +39,80 @@ const loadprds= async(newData) => {
     <section>
             <div class="card card-long animated fadeInUp once">
                 <img src="asset/img/${product.id}.jpg" class="album">
-                <div class="span1">Product Name</div>
+                <div class="span1 desc">Product Name</div>
                 <div class="card__product">
                     <span>${product.name}</span>
                 </div>
-                <div class="span2">Per Unit</div>
+                <div class="span2 desc">Unit Cost</div>
                 <div class="card__price">
                     <span>${product.price} </span>
                 </div>
-                <div class="span3">Units</div>
+                <div class="span3 desc">Units</div>
                 <div class="card__unit">
                     <span>${product.taken} ${product.unit}</span>
                 </div>
 
-                <div class="span4">Payable</div>
+                <div class="span4 desc">Total</div>
                 <div class="card__amount">
-                    <span>${product.payable}</span>
+                    <span>₹ ${product.payable}</span>
                 </div>
             </div>
         </section>
-    <section>
     `
 
     document.getElementById('home').innerHTML = document.getElementById('home').innerHTML + x;
-    document.getElementById('2').innerHTML = "CHECKOUT $" + payable;
+    document.getElementById('2').innerHTML = "CHECKOUT &nbsp ₹ " + payable;
     InitialCount += 1;
+}
+
+const firstload = async() =>{
+    url = 'https://ai-bill-api.vercel.app/product';
+
+    let res = await axios.get(url);
+    responseText = await res.data;
+    const products = responseText;
+    var len = products.length;
+    
+    if (len > InitialCount + 1){
+        $("#1").css("display", "none");
+        $("#home").css("display", "flex");
+        $("#2").css("display", "flex");
+
+        var payable = 0;
+        const products = responseText;
+        console.log(products);
+        for (let product of products) {
+            payable = payable + parseFloat(product.payable);
+
+            const x = `
+            <section>
+                    <div class="card card-long animated fadeInUp once">
+                        <img src="asset/img/${product.id}.jpg" class="album">
+                        <div class="span1 desc">Product Name</div>
+                        <div class="card__product">
+                            <span>${product.name}</span>
+                        </div>
+                        <div class="span2 desc">Unit Cost</div>
+                        <div class="card__price">
+                            <span>${product.price} </span>
+                        </div>
+                        <div class="span3 desc">Units</div>
+                        <div class="card__unit">
+                            <span>${product.unit}</span>
+                        </div>
+
+                        <div class="span4 desc">Total</div>
+                        <div class="card__amount">
+                            <span>₹ ${product.payable}</span>
+                        </div>
+                    </div>
+                </section>
+            `
+            document.getElementById('home').innerHTML = document.getElementById('home').innerHTML + x;
+        }
+        document.getElementById('2').innerHTML = "CHECKOUT &nbsp ₹ " + payable;
+        InitialCount=len-1;
+    }
 }
 
 const loadProducts = async() => {
@@ -72,18 +121,20 @@ const loadProducts = async() => {
     let res = await axios.get(url);
     responseText = await res.data;
     const products = responseText;
-    var len = products.length;
+    var len=products.length;
+    // if(products.length>len){
+    //     len=products.length;
+    // }
 
     if (len > InitialCount + 1) {
         $("#1").css("display", "none");
-        $("#home").css("display", "grid");
-        $("#2").css("display", "grid");
+        $("#home").css("display", "flex");
+        $("#2").css("display", "flex");
         var payable = 0;
         const products = responseText;
         console.log(products);
         for (let product of products) {
             payable = payable + parseFloat(product.payable);
-
         }
 
         var product = products.pop();
@@ -91,30 +142,30 @@ const loadProducts = async() => {
         <section>
                 <div class="card card-long animated fadeInUp once">
                     <img src="asset/img/${product.id}.jpg" class="album">
-                    <div class="span1">Product Name</div>
+                    <div class="span1 desc">Product Name</div>
                     <div class="card__product">
                         <span>${product.name}</span>
                     </div>
-                    <div class="span2">Per Unit</div>
+                    <div class="span2 desc">Unit Cost</div>
                     <div class="card__price">
                         <span>${product.price} </span>
                     </div>
-                    <div class="span3">Units</div>
+                    <div class="span3 desc">Units</div>
                     <div class="card__unit">
-                        <span>${product.taken} ${product.unit}</span>
+                        <span>${product.unit}</span>
                     </div>
 
-                    <div class="span4">Payable</div>
+                    <div class="span4 desc">Total</div>
                     <div class="card__amount">
-                        <span>${product.payable}</span>
+                        <span>₹ ${product.payable}</span>
                     </div>
                 </div>
             </section>
-        <section>
         `
+        // <span>${product.taken} ${product.unit}</span>    use in card unit div
 
         document.getElementById('home').innerHTML = document.getElementById('home').innerHTML + x;
-        document.getElementById('2').innerHTML = "CHECKOUT $" + payable;
+        document.getElementById('2').innerHTML = "CHECKOUT &nbsp ₹ " + payable;
         InitialCount += 1;
     }
 
@@ -126,7 +177,7 @@ const loadProducts = async() => {
 var checkout = async() => {
     document.getElementById('2').innerHTML = "<span class='loader-16' style='margin-left: 44%;'></span>"
     var payable = 0;
-    url = 'https://ai-bill-api.vercel.app/checkout';
+    url = 'https://ai-bill-api.vercel.app/product';
 
     let res = await axios.get(url);
     responseText = await res.data;
