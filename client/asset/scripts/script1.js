@@ -25,7 +25,7 @@ const deleteProducts = async() => {
 const loadprds= async(newData) => {
     $("#1").css("display", "none");
     $("#home").css("display", "flex");
-    $("#2").css("display", "flex");
+    $("#final").css("display", "flex");
     var payable = 0;
     const products = newData;
     console.log(products);
@@ -77,7 +77,7 @@ const firstload = async() =>{
     if (len > InitialCount + 1){
         $("#1").css("display", "none");
         $("#home").css("display", "flex");
-        $("#2").css("display", "flex");
+        $("#final").css("display", "flex");
 
         var payable = 0;
         const products = responseText;
@@ -130,7 +130,7 @@ const loadProducts = async() => {
     if (len > InitialCount + 1) {
         $("#1").css("display", "none");
         $("#home").css("display", "flex");
-        $("#2").css("display", "flex");
+        $("#final").css("display", "flex");
         var payable = 0;
         const products = responseText;
         console.log(products);
