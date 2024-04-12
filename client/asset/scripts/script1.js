@@ -13,7 +13,8 @@ const deleteProducts = async() => {
         const response = await axios.delete(`https://ai-bill-api.vercel.app/product/${product.id}`)
 
     }
-    location.reload();
+    // location.reload();
+    window.location.href = "https://aibill.rf.gd/index1.html";
     window.scroll({
         top: 0,
         left: 0,

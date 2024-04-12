@@ -72,9 +72,9 @@
     <script>
         window.onload = () => {
             firstload();
-            setInterval(function() {
+            let intervalId = setInterval(function() {
                 loadProducts();
-            }, 100);
+            }, 500);
         
             // const socket = new WebSocket('ws://localhost:5000');
             // socket.addEventListener('open', function (event) {
@@ -85,6 +85,9 @@
             //     const newData = JSON.parse(event.data);
             //     loadprds(newData);
             // });
+            document.getElementById("cancel_btn").addEventListener("click", function() {
+                clearInterval(intervalId);
+            });
         }
     </script>
 
