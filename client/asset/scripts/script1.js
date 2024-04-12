@@ -14,7 +14,7 @@ const deleteProducts = async() => {
 
     }
     // location.reload();
-    window.location.href = "https://aibill.rf.gd/index1.html";
+    window.location.href = "https://aibill.rf.gd/index.html";
     window.scroll({
         top: 0,
         left: 0,
