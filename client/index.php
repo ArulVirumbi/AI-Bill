@@ -1,3 +1,12 @@
+<?php
+@ob_start();
+session_start();
+
+if (isset($_SESSION['user'])) {
+  $user = $_SESSION['user'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,11 +17,14 @@
     <title>Automatic Billing</title>
 
     <link rel="stylesheet" href="asset/css/style1.css">
-
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="asset/scripts/script1.js"></script>
     <script type="text/javascript" src="asset/scripts/jquery.min.js"></script>
     <script src="asset/scripts/lottie-player.js"></script>
     <script src="asset/scripts/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.js" integrity="sha512-is1ls2rgwpFZyixqKFEExPHVUUL+pPkBEPw47s/6NDQ4n1m6T/ySeDW3p54jp45z2EJ0RSOgilqee1WhtelXfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 
@@ -28,6 +40,7 @@
           </div>
     
         </div>
+        <div class="logout"><a href="logout.php"><i class="fas fa-sign-out-alt"></i></a></div>
       </header>
     <!--Animation-->
     <div class="lottie" id="1">
@@ -96,3 +109,10 @@
 
 
 </html>
+
+<?php
+
+} else {
+  header("location:login.php ");
+}
+?>

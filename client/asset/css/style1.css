@@ -58,6 +58,7 @@ body {
     right: 0;
     left: 0;
     display: flex !important;
+    flex-direction: row;
     align-items: center !important;
     transition: all 0.5s;
     z-index: 997;
@@ -66,7 +67,15 @@ body {
     height: 60px;
     width: 100%;
     justify-content: center;
-    flex-direction: column;
+}
+.logout{
+    font-size: 25px;
+    right:15px;
+    position: absolute;
+    color: white;
+}
+.logout a{
+    color: white;
 }
 
 #footer{
