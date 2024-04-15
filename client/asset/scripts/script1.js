@@ -14,7 +14,7 @@ const deleteProducts = async() => {
 
     }
     // location.reload();
-    window.location.href = "https://aibill.rf.gd/index.html";
+    window.location.href = "https://aibill.rf.gd/index.php";
     window.scroll({
         top: 0,
         left: 0,
@@ -189,26 +189,6 @@ var checkout = async() => {
         payable = payable + parseFloat(product.payable);
     }
 
-    // var url = "https://api.scanova.io/v2/qrcode/text?data=upi%3A%2F%2Fpay%3Fpa%3Dshebinjosejacob2014%40oksbi%26pn%3DTXN965654954321%26tn%3DA%26am%3D4%26cu%3DINR%26url%3Dhttps%3A%2F%2Fcoderscafe.cf%2F&size=l&error_correction=M&data_pattern=RECT&eye_pattern=TLBR_LEAF&data_gradient_style=Radial&data_gradient_start_color=%2302c8db&data_gradient_end_color=%2302c8db&eye_color_inner=%2302c8db&eye_color_outer=%2302c8db&background_color=%23ecf0f3&logo.size=15&logo.excavated=true&logo.angle=0&poster.left=50&poster.top=50&poster.size=40&poster.eyeshape=ROUND_RECT&poster.dataPattern=ROUND&format=png&apikey=fmdtvmmwccekndkpalsltpzhvfmnpsmuhrvhpxzf";
-
-    // await fetch(url)
-    //     .then(function(data) {
-    //         return data.blob();
-    //     })
-    //     .then(function(img) {
-    //         var image = URL.createObjectURL(img);
-    //         $("#home").css("display", "none");
-    //         $("#final").css("display", "none");
-    //         window.scroll({
-    //             top: 0,
-    //             left: 0,
-    //             behavior: 'smooth'
-    //         });
-    //         $('#image').attr('src', image);
-    //         $("#qr").css("display", "grid");
-
-    //     });
-
     const upiId = 'arul.virumbi@oksbi';
     // const transactionId = 'your-unique-transaction-id';
     const transactionNote = 'Order';
@@ -221,10 +201,10 @@ var checkout = async() => {
         left: 0,
         behavior: 'smooth'
     });
-    $('#image').attr('src', image);
+
     $("#qr").css("display", "grid");
 
-    const qrCode = new QRCode(document.getElementById('image'), {
+    const qrCode = new QRCode(document.getElementById('qr'), {
         text: `upi://pay?pa=${upiId}&mc&tr=${payable}&tn=${transactionNote}&pn=${name}&cu=INR`,
         width: 256,
         height: 256,
@@ -233,12 +213,12 @@ var checkout = async() => {
         correctLevel: QRCode.CorrectLevel.H, // Error correction level
     });
 
-    setTimeout(function(){
-        $("#qr").css("display", "none");
-        $("#success").css("display", "grid");
-            },10000);
-        
 
-    // window.location.href = "upi://pay?pa=shebinjosejacob2014@oksbi&pn=TXN9656549238&tn=A&am=1&cu=INR&url=https://assettracker.cf/"*/
+    await new Promise((resolve) => setTimeout(resolve, 10000));
+    $("#qr").css("display", "none");
+    $("#success").css("display", "grid");
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     deleteProducts();
 }

@@ -63,7 +63,6 @@ if (isset($_SESSION['user'])) {
     <!--QR code-->
     <div id="qr" class="animated fadeInUp Once">
         Scan QR Code To Pay
-        <img id="image" src="" />
     </div>
 
     <!--Success-->
